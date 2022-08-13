@@ -169,7 +169,7 @@ class _ProfileEditState extends State<ProfileEdit>
                         child: Image.asset('assets/image/profile_img.png'),
                       ),
                     ),
-                    SizedBox(height: 10.h,),
+                    SizedBox(height: 15.h,),
 
                     //Name
                     Text('Simon Max', style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w700),),
