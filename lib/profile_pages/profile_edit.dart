@@ -13,9 +13,9 @@ class ProfileEdit extends StatefulWidget
 {
   AreaDataModel? areaDataModel;
   JobDataModel? jobDataModel;
-  BuildContext? context;
 
-  ProfileEdit({this.areaDataModel, this.context, this.jobDataModel});
+
+  ProfileEdit({this.areaDataModel,  this.jobDataModel});
 
 
   @override
@@ -193,7 +193,6 @@ class _ProfileEditState extends State<ProfileEdit>
                   borderRadius: BorderRadius.vertical(top: Radius.circular(25.r)),
                   color: Color(0xffFFFFFF)
               ),
-
             ),
           ),
 
@@ -249,7 +248,7 @@ class _ProfileEditState extends State<ProfileEdit>
                                 {
                                   Navigator.push(context, MaterialPageRoute(builder: (context)=> AreaEdit()));
                                 },
-                                  child: Text('Area : Bandhagen', style: TextStyle(color: Color(0xff3D3F3E),fontSize: 15.sp ),)),
+                                  child: Text("Area :${widget.areaDataModel?.areaName}", style: TextStyle(color: Color(0xff3D3F3E),fontSize: 15.sp ),)),
                             ],
                           ),
                           SizedBox(height: 10.h,),
@@ -264,7 +263,7 @@ class _ProfileEditState extends State<ProfileEdit>
                                 {
                                   Navigator.push(context, MaterialPageRoute(builder: (context)=> JobTitleEdit()));
                                 },
-                                  child: Text('Job: Graphic Designer', style: TextStyle(color: Color(0xff3D3F3E),fontSize: 15.sp ),)),
+                                  child: Text('Job: ${widget.jobDataModel?.jobName}', style: TextStyle(color: Color(0xff3D3F3E),fontSize: 15.sp ),)),
                             ],
                           ),
                           SizedBox(height: 10.h,),
