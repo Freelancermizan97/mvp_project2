@@ -1,8 +1,13 @@
+import 'package:demo/profile_pages/dataModel.dart';
+import 'package:demo/profile_pages/profile_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+
+
 class AreaEdit extends StatefulWidget
 {
+
   @override
   State<AreaEdit> createState() => _AreaEditState();
 }
@@ -11,8 +16,17 @@ class AreaEdit extends StatefulWidget
 
 
 
+
 class _AreaEditState extends State<AreaEdit>
 {
+
+  static List<String> areaName = ['Bandhagen','Stockholm ','Årtsa'];
+  String? selectItem = 'Bandhagen' ;
+
+  final List<AreaDataModel> AreaName = List.generate(
+      areaName.length, (index) => AreaDataModel('${areaName[index]}'));
+
+
   @override
   Widget build(BuildContext context)
   {
@@ -40,26 +54,25 @@ class _AreaEditState extends State<AreaEdit>
           ],
         ),
 
+        body: ListView.builder(
+          itemCount: AreaName.length,
 
+          itemBuilder: (context, index)
+          {
+            return Card(
+              child:ListTile(
+                //selected: true,
+                //selectedTileColor:Color(0xffE8E8FF) ,
+                selectedColor: Color(0xffE8E8FF),
+                title: Text(AreaName[index].areaName, style: TextStyle(color: Colors.black),),
+                onTap: ()
+                {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProfileEdit(areaDataModel: AreaName[index])));
+                },
+              ) ,
+            );
+          },
 
-        body: ListView(
-          children: const [
-            ListTile(
-              selected: true,
-              selectedTileColor:Color(0xffE8E8FF) ,
-
-              title: Text('Bandhagen', style: TextStyle(color: Colors.black),),
-            ),
-
-            ListTile(
-              title: Text('Stockholm ', style: TextStyle(color: Colors.black),),
-            ),
-
-            ListTile(
-              title: Text('Årtsa', style: TextStyle(color: Colors.black),),
-            ),
-
-          ],
         )
     );
   }

@@ -1,3 +1,5 @@
+import 'package:demo/profile_pages/dataModel.dart';
+import 'package:demo/profile_pages/profile_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -11,6 +13,14 @@ class JobTitleEdit extends StatefulWidget
 
 class _JobTitleEditState extends State<JobTitleEdit>
 {
+
+  static List<String> jobName = ['Developer','Backend Developer', 'Forntend developer', 'System developer', 'Java developer ' ];
+
+  final List<JobDataModel> JobName = List.generate(
+      jobName.length, (index) => JobDataModel('${jobName[index]}'));
+
+
+
   @override
   Widget build(BuildContext context)
   {
@@ -35,7 +45,24 @@ class _JobTitleEditState extends State<JobTitleEdit>
           )
         ],
       ),
-      body: ListView(
+      body: ListView.builder(
+        itemCount: JobName.length,
+        itemBuilder: (context, index)
+        {
+          return Card(
+            child:ListTile(
+              selected: true,
+              //selectedTileColor:Color(0xffE8E8FF) ,
+              selectedColor: Color(0xffE8E8FF),
+              title: Text(JobName[index].jobName, style: TextStyle(color: Colors.black),),
+              onTap: ()
+              {
+                //Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProfileEdit(areaDataModel: AreaName[index])));
+              },
+            ) ,
+          );
+        },
+        /*
         children: const [
           ListTile(
             selected: true,
@@ -64,6 +91,8 @@ class _JobTitleEditState extends State<JobTitleEdit>
             title: Text('Java developer ', style: TextStyle(color: Colors.black),),
           ),
         ],
+
+         */
       )
     );
   }

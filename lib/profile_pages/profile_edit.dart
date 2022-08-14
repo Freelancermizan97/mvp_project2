@@ -1,5 +1,9 @@
+import 'dart:io';
+
+import 'package:demo/profile_pages/dataModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'area_edit.dart';
 import 'email_edit.dart';
 import 'job_title_edit.dart';
@@ -7,6 +11,12 @@ import 'job_title_edit.dart';
 
 class ProfileEdit extends StatefulWidget
 {
+  AreaDataModel? areaDataModel;
+  BuildContext? context;
+
+  ProfileEdit({this.areaDataModel, this.context});
+
+
   @override
   State<ProfileEdit> createState() => _ProfileEditState();
 }
@@ -15,6 +25,23 @@ class ProfileEdit extends StatefulWidget
 
 class _ProfileEditState extends State<ProfileEdit>
 {
+
+  //Image picker
+
+  XFile? imgXFile;
+  final ImagePicker imagePicker = ImagePicker();
+
+  getImage(ImageSource src) async
+  {
+    Navigator.pop(context);
+    //imgXFile = await imagePicker.pickImage(source: ImageSource.gallery);
+    imgXFile = await imagePicker.pickImage(source: src);
+
+
+    setState(() {
+      imgXFile;
+    });
+  }
 
   showDialougeBox()
   {
@@ -36,31 +63,22 @@ class _ProfileEditState extends State<ProfileEdit>
               children: [
                 Column(
                   children: [
-                    Container(
-                      
-                      height: 60.h,
+                    InkWell(
+                      onTap: ()
+                      {
+                        getImage(ImageSource.camera);
+                      },
+                      child: Container(
 
-                      decoration: BoxDecoration(
-                          color: Color(0xffFFFFFF),
-                        borderRadius: BorderRadius.only(topLeft: Radius.circular(15.r), topRight: Radius.circular(15.r))
-                      ),
-                      child: Center(
-                        child: Text('Take a photo', style: TextStyle(color: Color(0xff555555), fontSize: 18.sp),),
-                      ),
-                    ),
-                    Divider(
-                      height: 2.h,
-                      color: Color(0xffD9D9D9),
-                      thickness: 2.sp,
-                    ),
-                    Container(
-                      height: 60.h,
-                      decoration: BoxDecoration(
-                          color: Color(0xffFFFFFF),
-                          // /borderRadius: BorderRadius.only(topLeft: Radius.circular(10.r), topRight: Radius.circular(10.r))
-                      ),
-                      child: Center(
-                        child: Text('Choose from library', style: TextStyle(color: Color(0xff555555), fontSize: 18.sp),),
+                        height: 60.h,
+
+                        decoration: BoxDecoration(
+                            color: Color(0xffFFFFFF),
+                          borderRadius: BorderRadius.only(topLeft: Radius.circular(15.r), topRight: Radius.circular(15.r))
+                        ),
+                        child: Center(
+                          child: Text('Take a photo', style: TextStyle(color: Color(0xff555555), fontSize: 18.sp),),
+                        ),
                       ),
                     ),
                     Divider(
@@ -68,14 +86,43 @@ class _ProfileEditState extends State<ProfileEdit>
                       color: Color(0xffD9D9D9),
                       thickness: 2.sp,
                     ),
-                    Container(
-                      height: 60.h,
-                      decoration: BoxDecoration(
-                          color: Color(0xffFFFFFF),
-                          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15.r), bottomRight: Radius.circular(15.r))
+                    InkWell(
+                      onTap: ()
+                      {
+                        getImage(ImageSource.gallery);
+                      },
+                      child: Container(
+                        height: 60.h,
+                        decoration: BoxDecoration(
+                            color: Color(0xffFFFFFF),
+                            // /borderRadius: BorderRadius.only(topLeft: Radius.circular(10.r), topRight: Radius.circular(10.r))
+                        ),
+                        child: Center(
+                          child: Text('Choose from library', style: TextStyle(color: Color(0xff555555), fontSize: 18.sp),),
+                        ),
                       ),
-                      child: Center(
-                        child: Text('Remove Current photo', style: TextStyle(color: Color(0xff555555), fontSize: 18.sp),),
+                    ),
+                    Divider(
+                      height: 2.h,
+                      color: Color(0xffD9D9D9),
+                      thickness: 2.sp,
+                    ),
+                    InkWell(
+                      onTap: ()
+                      {
+                        setState(() {
+                          imgXFile = null;
+                        });
+                      },
+                      child: Container(
+                        height: 60.h,
+                        decoration: BoxDecoration(
+                            color: Color(0xffFFFFFF),
+                            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15.r), bottomRight: Radius.circular(15.r))
+                        ),
+                        child: Center(
+                          child: Text('Remove Current photo', style: TextStyle(color: Color(0xff555555), fontSize: 18.sp),),
+                        ),
                       ),
                     ),
                   ],
@@ -164,9 +211,10 @@ class _ProfileEditState extends State<ProfileEdit>
                         showDialougeBox();
                       },
                       child: CircleAvatar(
-
                         radius: 80.r,
-                        child: Image.asset('assets/image/profile_img.png'),
+                        backgroundColor: Colors.white,
+                        backgroundImage: imgXFile == null? null : FileImage(File(imgXFile!.path)),
+                        child: imgXFile == null?  Icon(Icons.add_photo_alternate, color: Colors.grey, size: 55.w,): null,
                       ),
                     ),
                     SizedBox(height: 15.h,),
@@ -195,7 +243,7 @@ class _ProfileEditState extends State<ProfileEdit>
                                 {
                                   Navigator.push(context, MaterialPageRoute(builder: (context)=> AreaEdit()));
                                 },
-                                  child: Text('Area : Bandhagen', style: TextStyle(color: Color(0xff3D3F3E),fontSize: 15.sp ),)),
+                                  child: Text('Area : '+ widget.areaDataModel!.areaName.toString(), style: TextStyle(color: Color(0xff3D3F3E),fontSize: 15.sp ),)),
                             ],
                           ),
                           SizedBox(height: 10.h,),
