@@ -241,8 +241,6 @@ class _ProfileEditState extends State<ProfileEdit>
                               SizedBox(width: 12.w,),
 
 
-                              //Problem this line/////////////////
-
                               InkWell(
                                 onTap: ()
                                 {
