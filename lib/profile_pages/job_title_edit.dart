@@ -2,6 +2,8 @@ import 'package:demo/profile_pages/dataModel.dart';
 import 'package:demo/profile_pages/profile_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:demo/profile_pages/dataModel.dart';
+import 'package:demo/profile_pages/profile_edit.dart';
 
 class JobTitleEdit extends StatefulWidget
 {
@@ -49,18 +51,16 @@ class _JobTitleEditState extends State<JobTitleEdit>
         itemCount: JobName.length,
         itemBuilder: (context, index)
         {
-          return Card(
-            child:ListTile(
-              selected: true,
-              //selectedTileColor:Color(0xffE8E8FF) ,
-              selectedColor: Color(0xffE8E8FF),
-              title: Text(JobName[index].jobName, style: TextStyle(color: Colors.black),),
-              onTap: ()
-              {
-                //Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProfileEdit(areaDataModel: AreaName[index])));
-              },
-            ) ,
-          );
+          return ListTile(
+            selected: true,
+            //selectedTileColor:Color(0xffE8E8FF) ,
+            selectedColor: Color(0xffE8E8FF),
+            title: Text(JobName[index].jobName, style: TextStyle(color: Colors.black),),
+            onTap: ()
+            {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProfileEdit(jobDataModel: JobName[index])));
+            },
+          ) ;
         },
         /*
         children: const [

@@ -59,18 +59,15 @@ class _AreaEditState extends State<AreaEdit>
 
           itemBuilder: (context, index)
           {
-            return Card(
-              child:ListTile(
-                //selected: true,
-                //selectedTileColor:Color(0xffE8E8FF) ,
-                selectedColor: Color(0xffE8E8FF),
-                title: Text(AreaName[index].areaName, style: TextStyle(color: Colors.black),),
-                onTap: ()
-                {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProfileEdit(areaDataModel: AreaName[index])));
-                },
-              ) ,
-            );
+            return ListTile(
+              //selected: true,
+
+              title: Text(AreaName[index].areaName, style: TextStyle(color: Colors.black),),
+              onTap: ()
+              {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProfileEdit(areaDataModel: AreaName[index])));
+              },
+            ) ;
           },
 
         )

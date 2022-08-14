@@ -12,9 +12,10 @@ import 'job_title_edit.dart';
 class ProfileEdit extends StatefulWidget
 {
   AreaDataModel? areaDataModel;
+  JobDataModel? jobDataModel;
   BuildContext? context;
 
-  ProfileEdit({this.areaDataModel, this.context});
+  ProfileEdit({this.areaDataModel, this.context, this.jobDataModel});
 
 
   @override
@@ -112,6 +113,7 @@ class _ProfileEditState extends State<ProfileEdit>
                       {
                         setState(() {
                           imgXFile = null;
+                          Navigator.pop(context);
                         });
                       },
                       child: Container(
@@ -247,7 +249,7 @@ class _ProfileEditState extends State<ProfileEdit>
                                 {
                                   Navigator.push(context, MaterialPageRoute(builder: (context)=> AreaEdit()));
                                 },
-                                  child: Text('Area : '+ widget.areaDataModel!.areaName.toString(), style: TextStyle(color: Color(0xff3D3F3E),fontSize: 15.sp ),)),
+                                  child: Text('Area : Bandhagen', style: TextStyle(color: Color(0xff3D3F3E),fontSize: 15.sp ),)),
                             ],
                           ),
                           SizedBox(height: 10.h,),
