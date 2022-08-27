@@ -48,6 +48,9 @@ const String kR2Image = "assets/image/r2.jpeg";
 const String kR3Image = "assets/image/r3.jpeg";
 const String kT1Image = "assets/image/t1.jpeg";
 const String kT2Image = "assets/image/t2.jpeg";
+const String KPostImage1 = "assets/image/postIamge1.png";
+const String KPostImage2 = "assets/image/postImage2.png";
+const String KPostImage3 = "assets/image/postImage3.png";
 
 //Font Links
 const String kNunitoBoldFont = "Nunito-Bold";

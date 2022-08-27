@@ -1,4 +1,6 @@
 import 'package:demo/constant.dart';
+import 'package:demo/post/post.dart';
+import 'package:demo/post/post_page.dart';
 import 'package:demo/screens/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -41,7 +43,8 @@ class _MyAppState extends State<MyApp> {
                 fontFamily: kNunitoMediumFont,
               ),
               debugShowCheckedModeBanner: false,
-              home: Dashboard(),
+              home: //Dashboard(),
+              PostPage(),
             );
           },
         ));
