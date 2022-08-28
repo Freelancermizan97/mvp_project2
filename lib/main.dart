@@ -1,11 +1,8 @@
 import 'package:demo/constant.dart';
-import 'package:demo/post/post.dart';
 import 'package:demo/post/post_page.dart';
-import 'package:demo/screens/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -44,7 +41,7 @@ class _MyAppState extends State<MyApp> {
               ),
               debugShowCheckedModeBanner: false,
               home: //Dashboard(),
-              PostPage(),
+                  PostPage(),
             );
           },
         ));
